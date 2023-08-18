@@ -1,12 +1,14 @@
-#==========================
+
 ##### Basic Operations ####
-#==========================
-5 + 7 # like a calculator
-x <- 5 + 7 # now becoming more than a calculator
+
+5 + 7 # a basic calculation
+x <- 5 + 7 # assignment operation
 x
 
-x <- 1:20
+x <- 1:20 #a series of 1 to 20 that is assigned to x variable 
 x
+
+#some statistic formula
 min(x)
 max(x)
 mean(x)
@@ -17,15 +19,16 @@ range(x)
 y <- x - 3
 y
 
-# a collection of numbers called a vector. Any object that contains data is called a data structure and numeric vectors are the simplest type of data structure in R. In fact, even a single number is considered a vector of length one.
-z <- c(1.1, 9, 3.14) # a numeric vector with concatenate/combine c() cunction
+# A collection of numbers called a vector. 
+# Any object that contains data is called a data structure and numeric vectors are the simplest type of data structure in R. 
+# In fact, even a single number is considered a vector of length one.
+z <- c(1.1, 9, 3.14) # a numeric vector with combine c() function
 ?c # help on the c function
 z
 
 c(z, 555, z)
-z * 2 + 100 # arithmatic op on vector, 
-# behind the scene its doing z * c(2, 2, 2) + c(100, 100, 100). This is called vectorization.
-
+z * 2 + 100 # arithmetic op on vector, 
+            # behind the scene its doing z * c(2, 2, 2) + c(100, 100, 100). This is called vectorization.
 
 my_sqrt <- sqrt(z - 1)
 my_sqrt
@@ -37,20 +40,16 @@ c(1, 2, 3, 4) + c(0, 10)
 # If the length of the shorter vector does not divide evenly into the length of the longer vector, R will still do vectorization, but will throw a warning to let you know something fishy might be going on
 c(1, 2, 3, 4) + c(0, 10, 100) 
 
-#try autocompletion by pressing tab key after typin first few characters of any var name
+#try auto completion by pressing tab key after typing first few characters of any var name
 my_div
 
 
-### OPTIONAL ###
-#===================================
-#### FIle and folder operations ####
-#===================================
 
-# just get familiarized with getwd() and setwd() funcitions, rest is optional.
-"""
-Examining local workspace in R and begin to explore the relationship between your workspace and the file system of your machine.
-"""
+#### File and folder operations ####
 
+
+# just get familiarized with getwd() and setwd() functions, rest is optional.
+# Examining local workspace in R and begin to explore the relationship between your workspace and the file system of your machine.
 getwd()
 
 ls()
@@ -67,9 +66,7 @@ dir.create("testdir")
 setwd("testdir")
 file.create("mytest.R")
 list.files()
-
 file.exists("mytest.R")
-
 file.info("mytest.R")
 
 # We can also use the $ operator --- e.g., file.info("mytest.R")$mode --- to grab specific items.
@@ -90,9 +87,9 @@ setwd(old.dir)
 
 unlink("testdir", recursive = TRUE)
 
-# =========================================
+
 #### Creating sequences of numbers in R ###
-# =========================================
+
 1:20
 pi:10
 15:1
@@ -106,8 +103,8 @@ length(my_seq)
 
 1:length(my_seq)
 
-#seq(along.with = my_seq)
-#seq_along(my_seq)
+seq(along.with = my_seq)
+seq_along(my_seq)
 
 rep(0, times = 40)
 
@@ -115,9 +112,8 @@ rep(c(0, 1, 2), times = 10)
 
 rep(c(0, 1, 2), each = 10)
 
-# ========================================================
-### Vectors, simplest and common-most data struct in R ###
-# ========================================================
+
+### Vectors, simplest and common-most data structure in R ###
 
 # Vectors come in two diff types: atomic vectors and lists. 
 # Atomic vector: contains exactly one data type (numeric, logical, character, integer, complex)
