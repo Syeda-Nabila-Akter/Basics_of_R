@@ -453,7 +453,7 @@ cran
 # select(), filter(), arrange(), mutate(), and summarize().
 
 # first select() to select a set of columns from a data frame.
-?select
+#select
 
 select(cran, ip_id, package, country)
 
@@ -467,6 +467,7 @@ select(cran, -(date:size))
 
 # Next: "How do I select a subset of rows?" That's where the filter() function comes in.
 
+#filter
 filter(cran, package == "swirl")
 
 filter(cran, package == "swirl", r_version == "3.1.1", country == "US")
@@ -485,6 +486,9 @@ filter(cran, !is.na(r_version))
 # Now arrange() to reorder the rows of a data frame according to one of the variables/columns.
 
 cran2 <- select(cran, size:ip_id)
+cran2
+
+#arrange
 
 arrange(cran2, ip_id)
 
@@ -499,11 +503,13 @@ arrange(cran2, country, desc(r_version), ip_id)
 cran3 <- select(cran, ip_id, package, size)
 cran3
 
+#mutate 
+
 mutate(cran3, size_mb = size / 2^20)
 
 mutate(cran3, size_mb = size / 2^20, size_gb = size_mb / 2^10)
 
-# lets assume, there was a glith in size col
+# lets assume, there was a glitch in size col
 mutate(cran3, correct_size = size + 1000)
 
 # summarize() to collapse each group into a single-row summary of that group.
@@ -548,7 +554,9 @@ result1 <- arrange(top_countries, desc(countries), avg_bytes)
 print(result1)
 
 
-# now lest use a special chaining operator, %>%, which was originally introduced in the magrittr R package and has now become a key component of dplyr. The benefit of %>% is that it allows us to chain the function calls in a linear fashion. The code to the right of %>% operates on the result from the code to the left of %>%.
+# now lest use a special chaining operator, %>%, which was originally introduced in the magrittr R package and has now become a key component of dplyr. 
+# The benefit of %>% is that it allows us to chain the function calls in a linear fashion. 
+# The code to the right of %>% operates on the result from the code to the left of %>%.
 
 
 # liets print the top countries as we did above using %>% operator
@@ -583,11 +591,11 @@ cran %>%
   filter(size_mb <= 0.5) %>%
   arrange(desc(size_mb))
 
-
-### OPTIONAL except get basic understanding of gather(), separate(), and spread() functions ###
-#=======================================
+###############################################################################################
+### Basic understanding of gather(), separate(), and spread() functions ###
+###############################################################################################
 ### Tidying data with tidyr package ####
-#=======================================
+###############################################################################################
 
 library(readr)
 library(tidyr)
@@ -600,7 +608,7 @@ library(dplyr)
 # 2) Each observation forms a row
 # 3) Each type of observational unit forms a table
 
-# Any dataset that doesn't satisfy these conditions is considered 'messy' data. 
+# Any dataset that doesn't satisfy these conditions is considered 'messy' data.
 
 # The first problem is when we have column headers that are values, not variable names. 
 
