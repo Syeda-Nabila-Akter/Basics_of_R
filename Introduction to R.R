@@ -1,5 +1,6 @@
-
+###########################
 ##### Basic Operations ####
+###########################
 
 5 + 7 # a basic calculation
 x <- 5 + 7 # assignment operation
@@ -44,9 +45,9 @@ c(1, 2, 3, 4) + c(0, 10, 100)
 my_div
 
 
-
+####################################
 #### File and folder operations ####
-
+####################################
 
 # just get familiarized with getwd() and setwd() functions, rest is optional.
 # Examining local workspace in R and begin to explore the relationship between your workspace and the file system of your machine.
@@ -88,7 +89,9 @@ setwd(old.dir)
 unlink("testdir", recursive = TRUE)
 
 
+###########################################
 #### Creating sequences of numbers in R ###
+###########################################
 
 1:20
 pi:10
@@ -112,8 +115,9 @@ rep(c(0, 1, 2), times = 10)
 
 rep(c(0, 1, 2), each = 10)
 
-
+#############################################################
 ### Vectors, simplest and common-most data structure in R ###
+#############################################################
 
 # Vectors come in two diff types: atomic vectors and lists. 
 # Atomic vector: contains exactly one data type (numeric, logical, character, integer, complex)
@@ -126,9 +130,9 @@ tf <- num_vect < 1
 tf
 
 num_vect >= 6
-#(3 > 5) & (4 == 4)
-#(TRUE == FALSE) || (TRUE == TRUE)
-#((111 >= 111) || !(TRUE)) & ((4 + 1) == 5)
+(3 > 5) & (4 == 4)
+(TRUE == FALSE) || (TRUE == TRUE)
+((111 >= 111) || !(TRUE)) & ((4 + 1) == 5)
 
 # character vector
 my_char <- c("My", "name", "is")
@@ -136,39 +140,45 @@ my_char
 
 paste(my_char, collapse = " ")
 
-#my_name <- c(my_char, "Swirl")
-#my_name
-#paste(my_name, collapse = " ")
+my_name <- c(my_char, "Swirl")
+my_name
+paste(my_name, collapse = " ")
 
 paste("Hello", "world!", sep = " ")
 
-#paste(1:3, c("X", "Y", "Z"), sep = "")
+paste(1:3, c("X", "Y", "Z"), sep = "")
 
-#paste(LETTERS, 1:4, sep = "-")
+paste(LETTERS, 1:4, sep = "-")
 
-#===============================
+
+###############################
 ### Missing values handling ###
-#===============================
-# In R, NA is used to represent any value that is 'not available' or 'missing' (in the statistical sense). Lets explore missing values further. Any operation involving NA generally yields NA as the result. 
+###############################
+
+# In R, NA is used to represent any value that is 'not available' or 'missing' (in the statistical sense). 
+# Lets explore missing values further. Any operation involving NA generally yields NA as the result. 
 # missing values must not be ignored, but rather they should be carefully studied to see if there's an underlying pattern or cause for their missingness
 
 x <- c(44, NA, 5, NA)
 x * 3 
 
 y <- rnorm(1000)
+y
 
 z <- rep(NA, 1000)
 z
 
 my_data <- sample(c(y, z), 100)
+my_data
 
 my_na <- is.na(my_data)
 my_na
 
 # my_data == NA
-# returns a vector of the same length as my_data that contains all NAs, coz, NA is not really a value, but just a placeholder for a quantity that is not available. Therefore the logical expression is incomplete and R has no choice but to return all NAs.
+# returns a vector of the same length as my_data that contains all NAs, coz, NA is not really a value, but just a placeholder for a quantity that is not available. 
+# Therefore the logical expression is incomplete and R has no choice but to return all NAs.
 
-sum(my_na)
+print(sum(my_na))
 
 my_data
 
@@ -178,10 +188,12 @@ my_data
 
 Inf - Inf
 
-#=========================================================
+
+##########################################################
 ### Extract elements from a vector based on conditions ###
-#=========================================================
-x<- sample(c(y, z), 20)
+##########################################################
+
+x <- sample(c(y, z), 20)
 x
 # 'subset' from a vector by placing an 'index vector' in []
 x[1:10]
@@ -197,7 +209,8 @@ y
 y[y > 0] 
 # this different to
 x[x > 0]
-#Since NA is not a value, but rather a placeholder for an unknown quantity, the expression NA > 0 evaluates to NA. Hence we get a bunch of NAs mixed in with our positive numbers when we do this.
+#Since NA is not a value, but rather a placeholder for an unknown quantity, the expression NA > 0 evaluates to NA. 
+#Hence we get a bunch of NAs mixed in with our positive numbers when we do this.
 
 # but it works, i mean only returns positive values
 x[!is.na(x) & x > 0]
@@ -214,7 +227,8 @@ x[3000]
 x[c(-2, -10)]
 x[-c(2, 10)]
 
-# So far logical, positive integer, and negative integer type index vectors are covered. Rremaining is the concept of \'named\' elements.
+# So far logical, positive integer, and negative integer type index vectors are covered. 
+# Remaining is the concept of \'named\' elements.
 
 vect <- c(foo = 11, bar = 2, norf = NA)
 vect
@@ -229,11 +243,12 @@ vect[2]
 vect["2"]
 vect[c("foo", "bar")]
 
-#=============================
+##############################
 ### Metrics and dataframes ###
-#=============================
+##############################
 
-# They represent \'rectangular\' data types, meaning that they are used to store tabular data, with rows and columns. The main difference is that matrices can only contain a single class of data, while data frames can consist of many different classes of data.
+# They represent \'rectangular\' data types, meaning that they are used to store tabular data, with rows and columns. 
+# The main difference is that matrices can only contain a single class of data, while data frames can consist of many different classes of data.
 
 my_vector <- 1:20
 my_vector
@@ -255,7 +270,8 @@ class(my_vector)
 
 my_matrix <- my_vector
 
-# So, matrix is simply an atomic vector with a dimension attribute. A more direct method of creating the same matrix uses the matrix() function.
+# So, matrix is simply an atomic vector with a dimension attribute. 
+# A more direct method of creating the same matrix uses the matrix() function.
 
 my_matrix2 <- matrix(1:20, nrow=4, ncol=5)
 identical(my_matrix, my_matrix2)
@@ -264,8 +280,10 @@ identical(my_matrix, my_matrix2)
 patients <- c("Bill", "Gina", "Kelly", "Sean") 
 cbind(patients, my_matrix2)
 
-# Combining the character vector with our matrix of numbers caused everything to be enclosed in double quotes. This means we're left with a matrix of character strings.
-# As we already know, matrices can only contain ONE class of data.  Therefore, when we tried to combine a character vector with a numeric matrix, R was forced to 'coerce' the numbers to characters, hence the double quotes. This is called 'implicit coercion'.
+# Combining the character vector with our matrix of numbers caused everything to be enclosed in double quotes. 
+# This means we're left with a matrix of character strings.
+# As we already know, matrices can only contain ONE class of data.  
+# Therefore, when we tried to combine a character vector with a numeric matrix, R was forced to 'coerce' the numbers to characters, hence the double quotes. This is called 'implicit coercion'.
 
 # Now, how to include the names of our patients in the table without destroying the integrity of our numeric data?
 
@@ -280,18 +298,21 @@ class(my_data)
 cnames <- c("patient", "age", "weight", "bp", "rating", "test")
 colnames(my_data) <- cnames
 my_data
+colnames(my_data) <- c("patient", "age", "weight", "bp", "rating", "test")
+my_data
+
 x<- 1:20
 (x)
 
-#===============
+###########
 ### EDA ###
-#===============
+###########
 
 # Whenever you're working with a new dataset, the first thing you should do is look at it! What is the format of the data? What are the dimensions? What are the variable names? How are the variables stored? Are there missing data? Are there any flaws in the data?	
 
 # PLANTS Database (http://plants.usda.gov/adv_search.html).	
 
-setwd("C:/Noman/MIT_dataAnalysisForSocialScience/14_310x_Intro_to_R")
+#setwd("")
 plants <- read.csv("plants.csv")
 
 class(plants) #default class for data read using eg. read.csv() and read.table()
@@ -312,11 +333,14 @@ head(plants, 10)
 
 tail(plants, 15)	
 
+View(plants)
+
 summary(plants)
 #provides different output for each variable, depending on its class. For numeric data, it displays the min, 1st Q, median, mean, 3rd quartile, and max. For categorical variables (called 'factor' variables in R), it shows the count.
 
 summary(plants$Active_Growth_Period)
 summary(plants$Temp_Min_F)
+
 
 table(plants$Duration)
 table(plants$Active_Growth_Period)
@@ -327,9 +351,10 @@ str(plants)
 View(plants)
 #View() is a function that opens a spreadsheet-like viewer of the data
 
-#=======================
+
+
 ### Base graphics ###
-#=======================
+
 
 # A greatest strengths of R, relative to other programming languages, is the ease with which we can	create publication-quality graphics 
 # Advanced graphics approaches in R include lattice, ggplot2 and ggvis.	
@@ -339,7 +364,7 @@ View(plants)
 
 # Load the included data frame cars with data(cars).	
 
-data(cars)
+data(cars) # 'cars' is an built in dataset of RStudio
 ?cars	
 
 head(cars)	
@@ -348,6 +373,7 @@ head(cars)
 
 # now lts plot the data.
 plot(cars)
+#View(cars)
 
 # it has just two columns, so it assumes that you want to plot one column versus the other.	
 # 'plot' is short for scatterplot.
@@ -369,24 +395,30 @@ plot(cars, col = 2)
 plot(cars, xlim = c(10, 15))
 plot(cars, pch = 2)
 
-# Arguments like "col" and "pch" may not seem very intuitive. So many prefer modern packages like ggplot2, for creating their graphics in R. However, its useful to have an introduction to base graphics because many of the idioms in lattice and ggplot2 are modeled on them.
+# Arguments like "col" and "pch" may not seem very intuitive. 
+# So many prefer modern packages like ggplot2, for creating their graphics in R. 
+# However, its useful to have an introduction to base graphics because many of the idioms in lattice and ggplot2 are modeled on them.
 
 data(mtcars)
 str(cars)
 str(mtcars)
+?mtcars
+View(mtcars)
 
 # boxplot(), like many R functions, also takes a "formula" argument, generally an expression with a tilde ("~")	
-#plot(formula = mpg ~ cyl, data = mtcars)
-#boxplot(formula = mpg ~ cyl, data = mtcars)
+# plot(formula = mpg ~ cyl, data = mtcars)
+# boxplot(formula = mpg ~ cyl, data = mtcars)
+
 plot(formula = mpg ~ cyl, data = mtcars)
 boxplot(formula = mpg ~ cyl, data = mtcars)
 
 hist(mtcars$mpg)	
 # (http://www.ling.upenn.edu/~joseff/rstudy/week4.html) provides a useful overview.	
 
-#=======================
+########################
 ### Dplyr package ####
-#=======================
+########################
+
 library(dplyr)
 packageVersion("dplyr")
 
@@ -406,13 +438,19 @@ head(mydf,10)
 cran <- tbl_df(mydf) # this deprecated function is now called as_tibble()
 
 cran <- as_tibble(mydf)
+
+?as_tibble()
+
 rm("mydf")
+?rm
 
 # main advantage to using a tbl_df over a regular data frame is the printing."
+
 cran
 
 # "The dplyr philosophy is to have small functions that each do one thing well." 
-# Specifically, dplyr supplies five 'verbs' that cover most fundamental data manipulation tasks: select(), filter(), arrange(), mutate(), and summarize().
+# Specifically, dplyr supplies five 'verbs' that cover most fundamental data manipulation tasks: 
+# select(), filter(), arrange(), mutate(), and summarize().
 
 # first select() to select a set of columns from a data frame.
 ?select
